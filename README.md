@@ -64,9 +64,9 @@ Before diving into testing, let’s define our utility class
 
 ```java
 /**
- * The Numbers class provides utility methods for number operations.
+ * The CalculatorExample class provides utility methods for number operations.
  */
-public class Numbers {  
+public class CalculatorExample {  
 
     /**
      * Checks if a given number is odd.
@@ -77,6 +77,8 @@ public class Numbers {
     public static boolean isOdd(int number) {
         return number % 2 != 0; 
     }
+    
+    //...
 }
 
 ```
@@ -98,27 +100,29 @@ A JUnit test typically consists of:
 Here’s an example demonstrating the traditional approach:
 
 ```java
-import static org.junit.jupiter.api.Assertions.assertEquals;  
-  
-import nl.rabobank.ew.parameterizedtest.CalculatorExample;  
-import org.junit.jupiter.api.Test;  
-  
-/**  
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import nl.rabobank.ew.parameterizedtest.examples.CalculatorExample;
+import org.junit.jupiter.api.Test;
+
+/**
  * Unit test class for {@link CalculatorExample}.  
  * This class tests the addition functionality of {@code CalculatorExample}.  
- */class CalculatorTest {  
-  
-    /**  
- * Tests the {@link CalculatorExample#add(int, int)} method.  
- * Verifies that addition operations return the expected results. */  @Test  
-  void testAddition() {  
-        CalculatorExample calculator = new CalculatorExample();  
-  
+ */
+class CalculatorTest {
+
+    /**
+     * Tests the {@link CalculatorExample#add(int, int)} method.  
+     * Verifies that addition operations return the expected results. */
+    @Test
+    void testAddition() {
+        CalculatorExample calculator = new CalculatorExample();
+
         // Multiple assertions within a single test method  
-  assertEquals(5, calculator.add(2, 3), "2 + 3 should equal 5");  
-        assertEquals(0, calculator.add(-1, 1), "-1 + 1 should equal 0");  
-        assertEquals(-3, calculator.add(-1, -2), "-1 + (-2) should equal -3");  
-    }  
+        assertEquals(5, calculator.add(2, 3), "2 + 3 should equal 5");
+        assertEquals(0, calculator.add(-1, 1), "-1 + 1 should equal 0");
+        assertEquals(-3, calculator.add(-1, -2), "-1 + (-2) should equal -3");
+    }
 }
 ```
 
@@ -142,21 +146,24 @@ To improve test granularity, developers often write individual test methods for 
 
 ```java
 /**  
- * Tests the addition of two positive numbers. * Verifies that positive numbers are summed correctly. */@Test  
+ * Tests the addition of two positive numbers. * Verifies that positive numbers are summed correctly. */
+@Test  
 void testAdditionPositiveNumbers() {  
     CalculatorExample calculator = new CalculatorExample();  
     assertEquals(5, calculator.add(2, 3), "2 + 3 should equal 5");  
 }  
   
 /**  
- * Tests the addition of two negative numbers. * Verifies that negative numbers are summed correctly. */@Test  
+ * Tests the addition of two negative numbers. * Verifies that negative numbers are summed correctly. */
+@Test  
 void testAdditionNegativeNumbers() {  
     CalculatorExample calculator = new CalculatorExample();  
     assertEquals(-3, calculator.add(-1, -2), "-1 + (-2) should equal -3");  
 }  
   
 /**  
- * Tests the addition of a negative and a positive number. * Verifies that neutralization through addition works as expected. */@Test  
+ * Tests the addition of a negative and a positive number. * Verifies that neutralization through addition works as expected. */
+@Test  
 void testAdditionNeutralNumbers() {  
     CalculatorExample calculator = new CalculatorExample();  
     assertEquals(0, calculator.add(-1, 1), "-1 + 1 should equal 0");  
@@ -226,7 +233,7 @@ Suppose we’re going to test our simple `isBlank` method:
 /**
  * Utility class for string-related operations.
  */
-public class Strings {  
+public class StringsExample {  
 
     /**
      * Checks if a given string is blank.
@@ -249,15 +256,24 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /**
- * Unit test for {@link Strings#isBlank(String)} method.
+ * Unit test for {@link StringsExample#isBlank(String)} method.
  * Tests cases where the input should be considered blank.
  */
 class StringsTest {
 
+    /**
+     * Tests the {@code isBlank} method to ensure it correctly identifies blank strings.
+     * <p>
+     * This test uses a parameterized approach with {@link ValueSource} to pass different blank 
+     * strings, including an empty string and a string with only whitespace.
+     * </p>
+     *
+     * @param input the input string to be checked for blankness
+     */
     @ParameterizedTest
     @ValueSource(strings = {"", "  "})
     void isBlank_ShouldReturnTrueForNullOrBlankStrings(String input) {
-        assertTrue(Strings.isBlank(input), "Expected input to be considered blank");
+        assertTrue(StringsExample.isBlank(input), "Expected input to be considered blank");
     }
 }
 ```  
@@ -286,7 +302,7 @@ As of JUnit 5.4, we can pass a single `null` value to a parameterized test metho
 
 ```java  
 /**
- * Tests {@code Strings.isBlank()} with different inputs.
+ * Tests {@code StringsExample.isBlank()} with different inputs.
  * <p>
  * This parameterized test verifies that {@code isBlank()} correctly returns {@code true}
  * when provided with {@code null} inputs.
@@ -296,7 +312,7 @@ As of JUnit 5.4, we can pass a single `null` value to a parameterized test metho
 @ParameterizedTest
 @NullSource
 void isBlank_ShouldReturnTrueForNullInputs(String input) {
-    assertTrue(Strings.isBlank(input));
+    assertTrue(StringsExample.isBlank(input));
 }
 ```  
 
@@ -306,7 +322,7 @@ Quite similarly, we can pass empty values using the `@EmptySource` annotation:
 
 ```java  
 /**
- * Parameterized test to verify {@code Strings.isBlank()} behavior with empty inputs.
+ * Parameterized test to verify {@code StringsExample.isBlank()} behavior with empty inputs.
  * <p>
  * This test checks that {@code isBlank()} correctly returns {@code true}
  * when provided with an empty string input.
@@ -319,7 +335,7 @@ Quite similarly, we can pass empty values using the `@EmptySource` annotation:
 @ParameterizedTest
 @EmptySource
 void isBlank_ShouldReturnTrueForEmptyStrings(String input) {
-    assertTrue(Strings.isBlank(input));
+    assertTrue(StringsExample.isBlank(input));
 }
 ```  
 
@@ -331,7 +347,7 @@ To pass both `null` and empty values, we can use the composed `@NullAndEmptySour
 
 ```java  
 /**
- * Parameterized test to verify {@code Strings.isBlank()} behavior with null and empty inputs.
+ * Parameterized test to verify {@code StringsExample.isBlank()} behavior with null and empty inputs.
  * <p>
  * This test checks that {@code isBlank()} correctly returns {@code true}
  * when provided with either a {@code null} input or an empty string.
@@ -344,7 +360,7 @@ To pass both `null` and empty values, we can use the composed `@NullAndEmptySour
 @ParameterizedTest
 @NullAndEmptySource
 void isBlank_ShouldReturnTrueForNullAndEmptyStrings(String input) {
-    assertTrue(Strings.isBlank(input));
+    assertTrue(StringsExample.isBlank(input));
 }
 ```  
 
@@ -353,12 +369,19 @@ As with the `@EmptySource`, the composed annotation works for `Strings`, `Collec
 To pass a few more empty string variations to the parameterized test, we can combine `@ValueSource`, `@NullSource`, and `@EmptySource`:
 
 ```java  
-@ParameterizedTest  
-@NullAndEmptySource  
-@ValueSource(strings = {"  ", "\t", "\n"})  
-void isBlank_ShouldReturnTrueForAllTypesOfBlankStrings(String input) {  
- assertTrue(Strings.isBlank(input));  
-}  
+/**
+ * Tests the {@code isBlank} method from {@code StringsExample}
+ * using various types of blank strings.
+ *
+ * @param input the string to be tested for blankness
+ */
+@ParameterizedTest
+@NullAndEmptySource
+@ValueSource(strings = {"  ", "\t", "\n"})
+void isBlank_ShouldReturnTrueForAllTypesOfBlankStrings(String input) {
+    assertTrue(StringsExample.isBlank(input));
+}
+
 ```  
 
 ### 1.3. Enum
@@ -612,7 +635,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @MethodSource("provideStringsForIsBlank")  
 void isBlank_ShouldReturnTrueForNullOrBlankStrings(String input, boolean expected) {  
     // Assert that the isBlank method correctly identifies blank or null strings
-    assertEquals(expected, Strings.isBlank(input));  
+    assertEquals(expected, StringsExample.isBlank(input));  
 }
 ```  
 
@@ -660,7 +683,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @MethodSource // hmm, no method name ...
 void isBlank_ShouldReturnTrueForNullOrBlankStringsOneArgument(String input) {  
     // Assert that the isBlank method correctly identifies blank or null strings
-    assertTrue(Strings.isBlank(input));  
+    assertTrue(StringsExample.isBlank(input));  
 }
 
 /**
@@ -683,12 +706,12 @@ Sometimes, it’s useful to share arguments between different test classes. In t
  * Unit test for the {@code isBlank()} method.
  * This test retrieves test cases from an external source method.
  */
-class StringsUnitTest {  
+class StringsTest {  
     @ParameterizedTest
     @MethodSource("nl.rabobank.parameterized.StringParams#blankStrings")
     void isBlank_ShouldReturnTrueForNullOrBlankStringsExternalSource(String input) {  
         // Assert that the isBlank method correctly identifies blank or null strings
-        assertTrue(Strings.isBlank(input));  
+        assertTrue(StringsExample.isBlank(input));  
     }  
 }
 
@@ -855,7 +878,7 @@ So, we next need to make the `VariableArgumentsProvider` class read from the spe
 /**
  * Provides test arguments dynamically from a specified static field in the test class.
  * Implements ArgumentsProvider and AnnotationConsumer to support VariableSource.
- * 
+ * <p> 
  * The provider:
  * - Retrieves the field name from the VariableSource annotation.
  * - Accesses the field from the test class.
@@ -897,7 +920,7 @@ class VariableArgumentsProvider
         }  
     }  
 }
-```  
+```
 
 ### Difference Between Multiple Tests and a Single Parameterized Test
 
@@ -912,7 +935,7 @@ Using a single parameterized test allows you to run the same test logic with dif
  * - Positive numbers
  * - Negative numbers
  * - Mixed-sign numbers
- *
+ * <p>
  * Each test case consists of:
  * - Two integers to be added (a, b)
  * - The expected sum of the two numbers
@@ -928,7 +951,7 @@ void testAdd(int a, int b, int expected) {
     assertEquals(expected, calculator.add(a, b));  
 }
 
-```  
+```
 
 **Advantages:**
 - **Less Code Duplication:** The test logic is written once and executed with different inputs.

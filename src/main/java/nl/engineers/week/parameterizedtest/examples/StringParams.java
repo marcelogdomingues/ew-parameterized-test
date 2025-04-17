@@ -1,4 +1,4 @@
-package nl.rabobank.ew.parameterizedtest.examples;
+package nl.engineers.week.parameterizedtest.examples;
 
 import java.util.stream.Stream;
 

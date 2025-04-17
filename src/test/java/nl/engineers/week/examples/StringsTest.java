@@ -1,10 +1,10 @@
-package nl.rabobank.ew.examples;
+package nl.engineers.week.examples;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import nl.rabobank.ew.parameterizedtest.examples.StringsExample;
+import nl.engineers.week.parameterizedtest.examples.StringsExample;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -149,7 +149,7 @@ class StringsTest {
     }
 
     @ParameterizedTest
-    @MethodSource("nl.rabobank.ew.parameterizedtest.examples.StringParams#blankStrings")
+    @MethodSource("nl.engineers.week.parameterizedtest.examples.StringParams#blankStrings")
     void isBlank_ShouldReturnTrueForNullOrBlankStringsExternalSource(String input) {
         // Assert that the isBlank method correctly identifies blank or null strings
         assertTrue(StringsExample.isBlank(input));

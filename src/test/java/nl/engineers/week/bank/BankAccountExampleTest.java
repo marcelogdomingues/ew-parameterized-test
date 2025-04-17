@@ -1,6 +1,6 @@
-package nl.rabobank.ew.bank;
+package nl.engineers.week.bank;
 
-import nl.rabobank.ew.parameterizedtest.bank.BankAccountExample;
+import nl.engineers.week.parameterizedtest.bank.BankAccountExample;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

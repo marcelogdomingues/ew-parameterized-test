@@ -8,21 +8,26 @@
         <version>3.4.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>nl.rabobank</groupId>
+    <groupId>io.github.marcelo</groupId>
     <artifactId>ew-parameterized-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ew-parameterized-test</name>
     <description>ew-parameterized-test</description>
-    <url/>
-    <developers>
-        <developer/>
-    </developers>
+    <url>https://github.com/marcelogdomingues/ew-parameterized-test</url>
     <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
+        <connection>scm:git:git://github.com/marcelogdomingues/ew-parameterized-test.git</connection>
+        <developerConnection>scm:git:ssh://github.com/marcelogdomingues/ew-parameterized-test.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/marcelogdomingues/ew-parameterized-test</url>
     </scm>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
         <java.version>21</java.version>
     </properties>

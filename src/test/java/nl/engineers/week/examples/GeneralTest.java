@@ -1,4 +1,4 @@
-package nl.rabobank.ew.examples;
+package nl.engineers.week.examples;
 
 import org.apache.logging.log4j.util.Strings;
 import org.junit.jupiter.params.ParameterizedTest;

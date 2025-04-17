@@ -1,4 +1,4 @@
-package nl.rabobank.ew.parameterizedtest.bank;
+package nl.engineers.week.parameterizedtest.bank;
 
 public class BankAccountExample {
 

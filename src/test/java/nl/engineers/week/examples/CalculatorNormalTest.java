@@ -1,8 +1,8 @@
-package nl.rabobank.ew.examples;
+package nl.engineers.week.examples;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import nl.rabobank.ew.parameterizedtest.examples.CalculatorExample;
+import nl.engineers.week.parameterizedtest.examples.CalculatorExample;
 import org.junit.jupiter.api.Test;
 
 /**

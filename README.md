@@ -1,6 +1,4 @@
-# Rabobank Engineers Week - Parameterized Testing
-
-![Alt text](https://cdn.worldvectorlogo.com/logos/rabobank-4.svg "Rabobank Logo")
+# Engineers Week - Parameterized Testing
 
 ## Overview
 [JUnit 5](https://junit.org/junit4/), the latest iteration of the popular testing framework, introduces a host of new features designed to enhance the developer testing experience. Among these features is the powerful concept of parameterized tests. Parameterized tests allow developers to run a single test method multiple times with different sets of parameters, making it easier to test various scenarios and edge cases efficiently.
@@ -102,7 +100,7 @@ Here’s an example demonstrating the traditional approach:
 ```java
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import nl.rabobank.ew.parameterizedtest.examples.CalculatorExample;
+import examples.nl.engineers.week.parameterizedtest.CalculatorExample;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -180,11 +178,18 @@ JUnit 5 provides  **parameterized tests**, which allow us to run the same test l
 To implement a parameterized test, we replace  `@Test`  with  `@ParameterizedTest`  and provide a source of test values via the  `@ValueSource`  annotation:
 
 ```java
-@ParameterizedTest  
+/**
+ * Tests the {@code isOdd} method of the {@code Calculator} class using various odd numbers.
+ * This test ensures that the method correctly identifies odd numbers.
+ *
+ * @param number the integer value to be tested
+ */
+@ParameterizedTest
 @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE}) // List of test cases  
-void isOdd_ShouldReturnTrueForOddNumbers(int number) {  
-    assertTrue(calculator.isOdd(number));  
+void isOdd_ShouldReturnTrueForOddNumbers(int number) {
+    assertTrue(calculator.isOdd(number));
 }
+
 ```
 
 ### How This Works
@@ -708,7 +713,7 @@ Sometimes, it’s useful to share arguments between different test classes. In t
  */
 class StringsTest {  
     @ParameterizedTest
-    @MethodSource("nl.rabobank.parameterized.StringParams#blankStrings")
+    @MethodSource("nl.engineers.week.parameterizedtest.examples.StringParams#blankStrings")
     void isBlank_ShouldReturnTrueForNullOrBlankStringsExternalSource(String input) {  
         // Assert that the isBlank method correctly identifies blank or null strings
         assertTrue(StringsExample.isBlank(input));  

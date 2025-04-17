@@ -1,6 +1,6 @@
-package nl.rabobank.ew.examples;
+package nl.engineers.week.examples;
 
-import nl.rabobank.ew.parameterizedtest.examples.CalculatorExample;
+import nl.engineers.week.parameterizedtest.examples.CalculatorExample;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
